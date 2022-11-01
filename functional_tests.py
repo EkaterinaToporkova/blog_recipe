@@ -28,7 +28,7 @@ class BasicInstallTest(unittest.TestCase):
         self.assertIn('Рецепты', self.browser.title)
         # self.fail('Finish the test!')
 
-    # def test_home_page_header(self):  вот нужно будет сделать проверку на наличие изображения Foodei Blog на главной странице
+    # def test_home_page_header(self):  тут нужно будет сделать проверку на наличие изображения Foodei Blog на главной странице
     #     # В шапке сайта написано "Foodei Blog"
     #     self.browser.get('http://127.0.0.1:8000')
     #     header = self.browser.find_element(By.TAG_NAME, 'img')
@@ -36,12 +36,25 @@ class BasicInstallTest(unittest.TestCase):
     #     # self.fail('Finish the test!')
 
 
+    def test_home_page_blog(self):
+        # А под шапкой расположен блок с самыми разными рецептами
+        self.browser.get('http://127.0.0.1:8000')
+        loader = self.browser.find_element(By.CLASS_NAME, 'loader')
+        self.assertTrue(loader)
+
+    def test_home_page_blog_articles_look_correct(self):
+        # У каждого рецепта есть заголовок, описание, ссылка на страницу с полным описанием, а у некоторых еще и список ингредиентов
+        self.browser.get('http://127.0.0.1:8000')
+        hero_inside_item_text = self.browser.find_element(By.CLASS_NAME, 'hero__inside__item--text')
+        self.assertTrue(hero_inside_item_text)
+
+
 if __name__ == '__main__':
     unittest.main()
 
-# А под шапкой расположен блок с самыми разными рецептами
 
-# У каждого рецепта есть заголовок, описание, ссылка на страницу с полным описанием, а у некоторых еще и список ингредиентов
+
+
 
 # Катя кликнула по заголовку и у нее открылась страница с полным описанием рецепта
 
