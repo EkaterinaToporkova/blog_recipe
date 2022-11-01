@@ -1,4 +1,5 @@
 import unittest
+import requests
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -8,6 +9,10 @@ class BasicInstallTest(unittest.TestCase):
     # Однажды Катя была в раздумьях, чтобы такое приготовить
     # Но у нее совершенно не было идей и она решила поискать рецепты в Google
     # Она ввела запрос "Рецепты" и кликнула по одной из ссылок
+
+    def __init__(self, methodName: str = ...):
+        super().__init__(methodName)
+        self.verificationErrors = None
 
     def setUp(self):  # создается браузер
         self.browser = webdriver.Chrome()
@@ -23,18 +28,16 @@ class BasicInstallTest(unittest.TestCase):
         self.assertIn('Рецепты', self.browser.title)
         # self.fail('Finish the test!')
 
-    def test_home_page_header(self):
-        # В шапке сайта написано "Foodei Blog"
-        self.browser.get('http://127.0.0.1:8000')
-        header = self.browser.find_elements(By.TAG_NAME, 'img')
-        self.assertIn('logo.png', header)
-        # self.fail('Finish the test!')
+    # def test_home_page_header(self):  вот нужно будет сделать проверку на наличие изображения Foodei Blog на главной странице
+    #     # В шапке сайта написано "Foodei Blog"
+    #     self.browser.get('http://127.0.0.1:8000')
+    #     header = self.browser.find_element(By.TAG_NAME, 'img')
+    #     # self.assertIn('logo', header.text)
+    #     # self.fail('Finish the test!')
+
 
 if __name__ == '__main__':
     unittest.main()
-
-
-
 
 # А под шапкой расположен блок с самыми разными рецептами
 
@@ -42,4 +45,4 @@ if __name__ == '__main__':
 
 # Катя кликнула по заголовку и у нее открылась страница с полным описанием рецепта
 
-# Прочитав статью, Катя кликнула по тексту "Foodi Blog" в шапке сайта и попал на Главную страницу.
+# Прочитав статью, Катя кликнула по картинке "Foodie Blog" в шапке сайта и попал на Главную страницу.
